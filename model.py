@@ -24,7 +24,7 @@ class Model(db.Model):
                  nullable=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
 
-    brands = db.relationship( 'Brand', backref='models')
+    brandsdisplay[str(model.brand_name)].append(str(model.name) = db.relationship( 'Brand', backref='models')
 
     def __repr__(self):
         """Show info about model."""
