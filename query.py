@@ -51,10 +51,19 @@ def get_brands_summary():
      using only ONE database query.'''
     mdls = Model.query.options(db.joinedload('brands')).all()
     display = {}
+
+    # I feel like there should be a way to incorporporate group_by in the query 
+    # and run loops for each brand name, but I couldn't get the composition right.
+    # Dictionaries to the rescue!
+
     for model in mdls:
-        display.get(str(model.brand_name), [""])
-        display[str(model.brand_name)].append(str(model.name)
-    print display
+         display.setdefault(str(model.brand_name),{str(model.name)})
+         display[str(model.brand_name)].add(str(model.name))
+
+    for key, value in display.iteritems():
+         print "\n" + key
+         for item in value:
+             print " * " + item
 
 # -------------------------------------------------------------------
 # Part 2.5: Discussion Questions (Include your answers as comments.)
