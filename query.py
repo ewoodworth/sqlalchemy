@@ -88,8 +88,12 @@ def get_brands_summary():
 # Part 3
 
 def search_brands_by_name(mystr):
-#works for perfect case matches
+    """ Returns a list of brand object in which all brand names contain or match
+     argument string"""
+    #works for perfect case matches
     Brand.query.filter.((Brand.name.like(mystr + '%'))|(Brand.name.like('%' + mystr + '%'))|(Brand.name.like('%' + mystr))|(Brand.name == mystr)).all()
 
 def get_models_between(start_year, end_year):
+    """Returns a list of models produced between start_year and 
+    end_year (exclusive)"""
     Model.query.filter(Model.year > start_year, Model.year < end_year).all()
